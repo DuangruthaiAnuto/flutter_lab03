@@ -22,11 +22,23 @@ class SlotMachine extends StatelessWidget {
   }
 }
 
-class Slot extends StatelessWidget {
-  // const Slot({Key key}) : super(key: key);
+class Slot extends StatefulWidget {
+  @override
+  _SlotState createState() => _SlotState();
+}
+
+class _SlotState extends State<Slot> {
   var slotNumber1 = Random().nextInt(11) + 1;
   var slotNumber2 = Random().nextInt(11) + 1;
   var slotNumber3 = Random().nextInt(11) + 1;
+
+  void setSlotNumber() {
+    setState(() {
+      slotNumber1 = Random().nextInt(11) + 1;
+      slotNumber2 = Random().nextInt(11) + 1;
+      slotNumber3 = Random().nextInt(11) + 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,26 +47,19 @@ class Slot extends StatelessWidget {
         children: [
           Expanded(
             child: FlatButton(
-              onPressed: () {
-                slotNumber1 = Random().nextInt(11) + 1;
-                print("number: $slotNumber1");
-              },
+              onPressed: setSlotNumber,
               child: Image.asset('images/$slotNumber1.png'),
             ),
           ),
           Expanded(
             child: FlatButton(
-              onPressed: () {
-                print("number: $slotNumber2");
-              },
+              onPressed: setSlotNumber,
               child: Image.asset('images/$slotNumber2.png'),
             ),
           ),
           Expanded(
             child: FlatButton(
-              onPressed: () {
-                print("number: $slotNumber3");
-              },
+              onPressed: setSlotNumber,
               child: Image.asset('images/$slotNumber3.png'),
             ),
           ),
